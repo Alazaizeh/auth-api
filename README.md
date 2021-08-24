@@ -1,1 +1,1 @@
-# auth-api
+# bearer-auth
