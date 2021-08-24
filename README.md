@@ -10,7 +10,7 @@
 
 
 ### Main Branch
-https://omx302-bearer-auth.herokuapp.com/
+https://omar-auth-api.herokuapp.com/
 ---
 ### Pull request
 https://github.com/Omx302/auth-api/pull/1
