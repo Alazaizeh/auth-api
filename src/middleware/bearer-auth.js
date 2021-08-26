@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = (users) => (req, res, next) => {
+module.exports = (users) => async (req, res, next) => {
   console.log(req);
   if (!req.headers.authorization) {
     console.error(`No authorization header found - jwt`);
@@ -13,11 +13,11 @@ module.exports = (users) => (req, res, next) => {
 
   let token = req.headers.authorization.split(" ").pop();
 
-  users
-    .authenticateBearer(token)
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => next("Invalid login"));
+  try {
+    let user = await users.authenticateBearer(token);
+    req.user = user;
+    next();
+  } catch (error) {
+    next("Invalid login");
+  }
 };
