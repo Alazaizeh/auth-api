@@ -17,9 +17,12 @@ module.exports = (users) => async (req, res, next) => {
 
   const user = await Users.findOne({ where: { username } });
   if (!user) {
-    Users.create({ username, password })
-      .then((user) => res.status(201).send(user))
-      .catch((err) => res.status(400).send(err));
+    try {
+      let user = await Users.create({ username, password });
+      res.status(201).send(user);
+    } catch (error) {
+      res.status(400).send(error);
+    }
   } else {
     res.status(401).json("User name exists");
   }
