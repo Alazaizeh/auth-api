@@ -18,6 +18,6 @@ https://omar-auth-api.herokuapp.com/
 2. https://github.com/Omx302/auth-api/pull/2
 ---
 ### Github actions
-https://github.com/Omx302/auth-api/actions/runs/1163265147
-https://github.com/Omx302/auth-api/actions/runs/1168917578
+1. https://github.com/Omx302/auth-api/actions/runs/1163265147
+2. https://github.com/Omx302/auth-api/actions/runs/1168917578
 ----
