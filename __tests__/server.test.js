@@ -42,19 +42,7 @@ describe("express server", () => {
     // assert
     expect(response.status).toBe(status);
   });
-  // --------------------------------------
-  // it("should POST to /signup to create a new user", async () => {
-  //   // arrange
-  //   let param = "/signup";
-  //   let status = 201;
-  //   // act
-  //   const response = await request
-  //     .post(param)
-  //     .auth(`Test${Math.floor(Math.random() * 100)}`, "xxx");
-  //   // assert
-  //   expect(response.status).toBe(status);
-  //   expect(response.body).toHaveProperty("username");
-  // });
+
   it("should POST to /signin to login as a user (use basic auth)", async () => {
     // arrange
     let param = "/signin";
