@@ -1,6 +1,6 @@
 # auth-api
 
-![img](./r.png)
+![img](./Lab%20Schema.png)
 ## Notes:
 - Implemented Express
 - Connected Postgres
