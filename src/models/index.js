@@ -2,18 +2,24 @@
 
 // const POSTGRES_URI = process.env.POSTGRES_URI || 'postgres://localhost/postgres';
 const POSTGRES_URI =
-  process.env.POSTGRES_URI ||
   "postgres://pfwvsseb:nsW3ouLEURu7OyQ_rDA7sJ8s13aeOTt7@tai.db.elephantsql.com/pfwvsseb";
 // "postgresql://postgres:0000@localhost:5432/class04";
 const { Sequelize, DataTypes } = require("sequelize");
-const users = require("./usersSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const SECRET = process.env.JWT_SECRET || "super-secret";
-// const Collection = require("./collection-class");
-
 var sequelize = new Sequelize(POSTGRES_URI, {});
+const SECRET = process.env.JWT_SECRET || "super-secret";
+
+const Collection = require("./collection-class");
+const users = require("./users");
+const food = require("./food");
+const clothes = require("./clothes");
+
+const foodModel = food(sequelize, DataTypes);
+const clothesModel = clothes(sequelize, DataTypes);
+const clothesCollection = new Collection(clothesModel);
+const foodCollection = new Collection(foodModel);
 
 const usersModel = users(sequelize, DataTypes);
 usersModel.beforeCreate(async (user) => {
@@ -54,4 +60,6 @@ usersModel.authenticateBearer = async function (token) {
 module.exports = {
   db: sequelize,
   Users: usersModel,
+  Food: foodCollection,
+  Clothes: clothesCollection,
 };

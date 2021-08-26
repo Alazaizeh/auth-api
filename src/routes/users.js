@@ -6,7 +6,6 @@ const router = express.Router();
 const basicAuth = require("../middleware/basic-auth");
 const bearerAuth = require("../middleware/bearer-auth");
 const { Users } = require("../models/index");
-const signUpMiddleware = require("../middleware/signUp");
 const acl = require("../middleware/acl");
 // {"username":"test", "password":"test"}
 router.post("/signup", async (req, res) => {
@@ -33,18 +32,6 @@ router.get("/secret", bearerAuth(Users), (req, res) => {
 
 router.get("/user", bearerAuth(Users), acl("read"), (req, res) => {
   res.status(200).send(req.user);
-});
-
-router.post("/create", bearerAuth(Users), acl("create"), (req, res) => {
-  res.status(200).send("Ok! I have create permissions");
-});
-
-router.put("/update", bearerAuth(Users), acl("update"), (req, res) => {
-  res.status(200).send("Ok! I have update permissions");
-});
-
-router.delete("/delete", bearerAuth(Users), acl("delete"), (req, res) => {
-  res.status(200).send("Ok! I have delete permissions");
 });
 
 module.exports = router;
